@@ -16,8 +16,8 @@ app.post('/', (req, res) => {
     /* POST user data using the request body */
 })
 
-app.get('/?name=?', (req, res) => {
-    /* GET a user by their name */
+app.get('/', (req, res) => {
+    /* GET a user by their name using query params*/
 })
 
 const port = 3000
