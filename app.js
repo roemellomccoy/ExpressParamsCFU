@@ -7,38 +7,28 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 
-app.get('/', (req, res) => {
+app.get('/students', (req, res) => {
     /* Refactor to GET a user by their name using query params *IF* it's passed.
     If no name is passed in query params, should still behave as it currently does */
     res.send(users)
 })
 
-app.get('/:name', (req, res) => {
-    let user = users.filter(user => {
-        if(user.name[0] === req.params.name){
+// app.get('/students?search=:name', (req, res) => {
+//     console.log(req.params.search)
+//     users.forEach(user => {
+//             console.log(user.username)
+//         if(user.username === req.params.search){
+//             res.send(user)
+//         }
+//     })
+// })
+
+app.get('/students/:studentId', (req, res) => {
+    users.filter(user => {
+        if(user.studentId === req.params.studentId){
             res.send(user)
         }
     })
-})
-
-app.get('/:id', (req, res) => {
-    /* GET a user by their id */
-    let index = parseInt(req.params.id) - 1
-    console.log(index)
-    res.send(users[index])
-})
-
-app.post('/', (req, res) => {
-    /* POST user data using the request body */
-    let newUser = {
-        "id": req.body.id,
-        "name": req.body.name,
-        "profilePic": req.body.profilePic,
-        "lastCalled": req.body.lastCalled,
-        "timesCalled": req.body.timesCalled,
-        "notes": null
-    }
-    users.push(newUser)
 })
 
 
